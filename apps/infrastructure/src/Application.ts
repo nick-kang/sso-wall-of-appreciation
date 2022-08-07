@@ -46,6 +46,7 @@ export class Application extends cdk.Stack {
     const requestsFn = new nodejs.NodejsFunction(this, 'RequestsFunction', {
       entry: '../../functions/fn-request/src/index.ts',
       architecture: lambda.Architecture.ARM_64,
+      timeout: cdk.Duration.seconds(5),
     })
 
     requestsFn.addToRolePolicy(
