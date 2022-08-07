@@ -126,6 +126,7 @@ export class Application extends cdk.Stack {
           viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
           cachePolicy: cf.CachePolicy.CACHING_DISABLED,
           responseHeadersPolicy: cf.ResponseHeadersPolicy.SECURITY_HEADERS,
+          // https://stackoverflow.com/a/66324904/8400466
           originRequestPolicy:
             cf.OriginRequestPolicy.USER_AGENT_REFERER_HEADERS,
         },
