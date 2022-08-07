@@ -39,7 +39,14 @@ export const handler: APIGatewayProxyHandlerV2 = async (event) => {
     gh = new Octokit({ auth: env.GH_ACCESS_TOKEN })
   }
 
-  const body = CreateVendor.safeParse(event.body)
+  if (event.body == null) {
+    return {
+      statusCode: 400,
+      body: 'Missing body payload',
+    }
+  }
+
+  const body = CreateVendor.safeParse(JSON.parse(event.body))
 
   if (!body.success) {
     return {
