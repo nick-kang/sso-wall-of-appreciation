@@ -1,0 +1,9 @@
+{
+  "name": "@app/config-esbuild",
+  "version": "0.0.0",
+  "main": "index.mjs",
+  "type": "module",
+  "devDependencies": {
+    "esbuild": "^0.14.53"
+  }
+}

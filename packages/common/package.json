@@ -1,0 +1,20 @@
+{
+  "name": "@app/common",
+  "version": "0.0.0",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "typecheck": "tsc",
+    "typecheck:watch": "tsc -w",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "pnpm lint --fix"
+  },
+  "dependencies": {
+    "zod": "^3.17.10"
+  },
+  "devDependencies": {
+    "@app/config-ts": "workspace:*",
+    "@app/eslint-config": "workspace:*",
+    "typescript": "4.7.4"
+  }
+}

@@ -1,0 +1,9 @@
+name: AWS
+categories:
+  - cloud
+homepage_url: https://aws.amazon.com/
+plan_price: usage
+plan_source_url: https://aws.amazon.com/pricing
+sso_price: 0
+sso_source_url: https://aws.amazon.com/about-aws/whats-new/2017/12/announcing-aws-single-sign-on--sso/
+updated_at: 2022-08-06T19:18:12.145Z

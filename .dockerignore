@@ -1,0 +1,28 @@
+*.tsbuildinfo
+generated
+.DS_Store
+node_modules
+build
+README.md
+
+# next.js
+**/.next
+
+# debug
+.pnpm-debug.log*
+
+# env
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# https://github.com/aws/aws-cdk/issues/3899#issuecomment-773198963
+**/cdk.out
+
+# Docker
+Dockerfile
+Dockerfile.*
+.dockerignore
+docker-compose.yml

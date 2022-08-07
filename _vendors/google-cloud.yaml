@@ -1,0 +1,9 @@
+name: Google Cloud
+categories:
+  - cloud
+homepage_url: https://cloud.google.com/
+plan_price: usage
+plan_source_url: https://cloud.google.com/pricing
+sso_price: 0
+sso_source_url: https://cloud.google.com/identity-platform/pricing
+updated_at: 2022-08-06T19:18:12.145Z

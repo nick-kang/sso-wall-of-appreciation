@@ -1,0 +1,26 @@
+{
+  "name": "@app/fn-request",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc",
+    "typecheck:watch": "tsc -w",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "pnpm lint --fix"
+  },
+  "devDependencies": {
+    "@app/common": "workspace:*",
+    "@types/aws-lambda": "^8.10.101",
+    "typescript": "4.7.4",
+    "zod": "^3.17.10"
+  },
+  "dependencies": {
+    "@app/config-ts": "workspace:*",
+    "@app/eslint-config": "workspace:*",
+    "@aws-sdk/client-ssm": "^3.142.0",
+    "@octokit/rest": "^19.0.3",
+    "hcaptcha": "^0.1.1",
+    "snakecase-keys": "^5.4.2",
+    "yaml": "^2.1.1"
+  }
+}

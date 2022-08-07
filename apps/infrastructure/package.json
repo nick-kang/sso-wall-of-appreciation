@@ -1,0 +1,37 @@
+{
+  "name": "@app/infrastructure",
+  "private": true,
+  "version": "0.0.0",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "cdk": "cdk",
+    "dev": "run-p -l 'typecheck:watch'",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "pnpm lint --fix",
+    "typecheck": "tsc",
+    "typecheck:watch": "tsc -w",
+    "build": "node build.mjs",
+    "synth": "cdk synth --app \"node --enable-source-maps build/index.js\"",
+    "deploy": "cdk deploy --app \"node --enable-source-maps build/index.js\""
+  },
+  "dependencies": {
+    "@app/common": "workspace:*",
+    "@aws-cdk/aws-apigatewayv2-alpha": "2.35.0-alpha.0",
+    "@aws-cdk/aws-apigatewayv2-integrations-alpha": "2.35.0-alpha.0",
+    "aws-cdk": "^2.35.0",
+    "aws-cdk-lib": "^2.35.0",
+    "cdk-iam-floyd": "^0.410.0",
+    "cdk-pipelines-github": "^0.2.150",
+    "constructs": "^10.1.68",
+    "zod": "^3.17.10"
+  },
+  "devDependencies": {
+    "@app/config-esbuild": "workspace:*",
+    "@app/config-ts": "workspace:*",
+    "@app/eslint-config": "workspace:*",
+    "esbuild": "^0.14.53",
+    "npm-run-all": "^4.1.5",
+    "typescript": "4.7.4"
+  }
+}
