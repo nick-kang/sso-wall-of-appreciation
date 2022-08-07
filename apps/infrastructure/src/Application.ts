@@ -121,7 +121,9 @@ export class Application extends cdk.Stack {
           originRequestPolicy: cf.OriginRequestPolicy.CORS_S3_ORIGIN,
         },
         '/api/*': {
-          origin: new origins.HttpOrigin(apiEndPointDomainName),
+          origin: new origins.HttpOrigin(apiEndPointDomainName, {
+            originPath: `/${httpApi.defaultStage?.stageName}`,
+          }),
           allowedMethods: cf.AllowedMethods.ALLOW_ALL,
           viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
           cachePolicy: cf.CachePolicy.CACHING_DISABLED,
