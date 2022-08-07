@@ -52,8 +52,8 @@ export class Application extends cdk.Stack {
       new statements.Ssm()
         .toGetParameters()
         .on(
-          `arn:aws:ssm:${CONSTANTS.region}:${CONSTANTS.account}:parameter/${paramNames.ghAccessToken}`,
-          `arn:aws:ssm:${CONSTANTS.region}:${CONSTANTS.account}:parameter/${paramNames.hcaptchaSecret}`,
+          `arn:aws:ssm:${CONSTANTS.region}:${CONSTANTS.account}:parameter${paramNames.ghAccessToken}`,
+          `arn:aws:ssm:${CONSTANTS.region}:${CONSTANTS.account}:parameter${paramNames.hcaptchaSecret}`,
         ),
     )
 
