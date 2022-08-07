@@ -77,7 +77,7 @@ export const handler: APIGatewayProxyHandlerV2 = async (event) => {
   })
 
   const response: CreateVendorResponse = {
-    url: issue.url,
+    url: `https://github.com/${github.owner}/${github.owner}/issues/${issue.data.number}`,
   }
 
   return {
