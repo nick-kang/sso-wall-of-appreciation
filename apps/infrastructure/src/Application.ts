@@ -121,12 +121,7 @@ export class Application extends cdk.Stack {
           originRequestPolicy: cf.OriginRequestPolicy.CORS_S3_ORIGIN,
         },
         '/api/*': {
-          origin: new origins.HttpOrigin(apiEndPointDomainName, {
-            customHeaders: {
-              // https://stackoverflow.com/a/49827279/8400466
-              Host: hostname,
-            },
-          }),
+          origin: new origins.HttpOrigin(apiEndPointDomainName),
           allowedMethods: cf.AllowedMethods.ALLOW_ALL,
           viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
           cachePolicy: cf.CachePolicy.CACHING_DISABLED,
