@@ -1,0 +1,10 @@
+name: Microsoft Azure
+categories:
+  - cloud
+alternative_to: []
+homepage_url: https://azure.microsoft.com
+plan_price: usage
+plan_source_url: https://azure.microsoft.com/pricing
+sso_price: 6
+sso_source_url: https://azure.microsoft.com/en-us/pricing/details/active-directory/
+updated_at: 2022-08-07
