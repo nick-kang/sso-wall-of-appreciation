@@ -79,6 +79,7 @@ importers:
       ky: ^0.31.1
       next: 12.2.4
       next-seo: ^5.5.0
+      next-sitemap: ^3.1.16
       next-transpile-modules: 9.0.0
       npm-run-all: ^4.1.5
       react: 18.2.0
@@ -108,6 +109,7 @@ importers:
       ky: 0.31.1
       next: 12.2.4_twoewwu6sg7cdf3ao6njtbftne
       next-seo: 5.5.0_vyccxgqxcnj5vudpssiumaxlme
+      next-sitemap: 3.1.16_5zhu3cku25zwtyi2lv2v345ony
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-hook-form: 7.34.0_react@18.2.0
@@ -1862,6 +1864,10 @@ packages:
       '@chakra-ui/system': 2.2.4_rq3l25qc4qpq3j4w6o4x7hatzy
       '@chakra-ui/utils': 2.0.6
       react: 18.2.0
+    dev: false
+
+  /@corex/deepmerge/4.0.29:
+    resolution: {integrity: sha512-q/yVUnqckA8Do+EvAfpy7RLdumnBy9ZsducMUtZTvpdbJC7azEf1hGtnYYxm0QfphYxjwggv6XtH64prvS1W+A==}
     dev: false
 
   /@ctrl/tinycolor/3.4.1:
@@ -4225,6 +4231,10 @@ packages:
     dependencies:
       brace-expansion: 1.1.11
 
+  /minimist/1.2.6:
+    resolution: {integrity: sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==}
+    dev: false
+
   /mrmime/1.0.1:
     resolution: {integrity: sha512-hzzEagAgDyoU1Q6yg5uI+AorQgdvMCur3FcKf7NhMKWsaYg+RnbTyHRa/9IlLF9rf455MOCtcqqrQQ83pPP7Uw==}
     engines: {node: '>=10'}
@@ -4253,6 +4263,20 @@ packages:
       next: 12.2.4_twoewwu6sg7cdf3ao6njtbftne
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /next-sitemap/3.1.16_5zhu3cku25zwtyi2lv2v345ony:
+    resolution: {integrity: sha512-kczTKLB1ifqi44mMImv/sLRsqxy/O4DXJ4mx/1l23vyx6QFWqeuHxS0duEL/EsChcVJUMWV4FNg2pIiX31xxmg==}
+    engines: {node: '>=14.18'}
+    hasBin: true
+    peerDependencies:
+      '@next/env': '*'
+      next: '*'
+    dependencies:
+      '@corex/deepmerge': 4.0.29
+      '@next/env': 12.2.4
+      minimist: 1.2.6
+      next: 12.2.4_twoewwu6sg7cdf3ao6njtbftne
     dev: false
 
   /next-transpile-modules/9.0.0:
