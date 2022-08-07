@@ -131,7 +131,8 @@ export class Application extends cdk.Stack {
           viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
           cachePolicy: cf.CachePolicy.CACHING_DISABLED,
           responseHeadersPolicy: cf.ResponseHeadersPolicy.SECURITY_HEADERS,
-          originRequestPolicy: cf.OriginRequestPolicy.ALL_VIEWER,
+          originRequestPolicy:
+            cf.OriginRequestPolicy.USER_AGENT_REFERER_HEADERS,
         },
       },
       defaultRootObject: 'index.html',
