@@ -47,6 +47,7 @@ export class Application extends cdk.Stack {
       entry: '../../functions/fn-request/src/index.ts',
       architecture: lambda.Architecture.ARM_64,
       timeout: cdk.Duration.seconds(5),
+      runtime: lambda.Runtime.NODEJS_16_X,
       bundling: {
         minify: true,
         sourceMap: true,
