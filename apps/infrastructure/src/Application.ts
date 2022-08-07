@@ -80,6 +80,15 @@ export class Application extends cdk.Stack {
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
     })
     new s3deploy.BucketDeployment(this, 'HtmlFilesDeployment', {
+      sources: [s3deploy.Source.asset('../web/html')],
+      destinationBucket: htmlFiles,
+      contentType: 'text/html',
+      cacheControl: [
+        s3deploy.CacheControl.fromString('public, max-age=0, must-revalidate'),
+      ],
+    })
+
+    new s3deploy.BucketDeployment(this, 'OtherNoCacheFilesDeployment', {
       sources: [s3deploy.Source.asset('../web/out')],
       destinationBucket: htmlFiles,
       cacheControl: [
