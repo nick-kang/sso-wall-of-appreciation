@@ -24,12 +24,14 @@ importers:
       '@app/eslint-config': workspace:*
       '@aws-cdk/aws-apigatewayv2-alpha': 2.35.0-alpha.0
       '@aws-cdk/aws-apigatewayv2-integrations-alpha': 2.35.0-alpha.0
+      '@types/fs-readdir-recursive': ^1.1.0
       aws-cdk: ^2.35.0
       aws-cdk-lib: ^2.35.0
       cdk-iam-floyd: ^0.410.0
       cdk-pipelines-github: ^0.2.150
       constructs: ^10.1.68
       esbuild: ^0.14.53
+      fs-readdir-recursive: ^1.1.0
       npm-run-all: ^4.1.5
       typescript: 4.7.4
       zod: ^3.17.10
@@ -42,11 +44,13 @@ importers:
       cdk-iam-floyd: 0.410.0_36inm4m767d2mtncek32w3s3zy
       cdk-pipelines-github: 0.2.150_36inm4m767d2mtncek32w3s3zy
       constructs: 10.1.68
+      fs-readdir-recursive: 1.1.0
       zod: 3.17.10
     devDependencies:
       '@app/config-esbuild': link:../../packages/config-esbuild
       '@app/config-ts': link:../../packages/config-ts
       '@app/eslint-config': link:../../packages/config-eslint
+      '@types/fs-readdir-recursive': 1.1.0
       esbuild: 0.14.53
       npm-run-all: 4.1.5
       typescript: 4.7.4
@@ -2483,6 +2487,10 @@ packages:
     resolution: {integrity: sha512-84geGyVc0H9P9aGbcg/vkDh5akJq0bEf3tizHNR2d1gcm0wsp9IZ/SW6rPxvgjJFi3OeVxDc8WTKCAjoZbogzg==}
     dev: true
 
+  /@types/fs-readdir-recursive/1.1.0:
+    resolution: {integrity: sha512-bod4N8d1d0qF2GV4j79jdh0MZEki3rJ093a0Hx3zHhlHK6jctkA0zfux1tu9sOfET2IMKTrbxAk8o0z8aJTA+g==}
+    dev: true
+
   /@types/json-schema/7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
     dev: true
@@ -2894,6 +2902,8 @@ packages:
     dependencies:
       aws-cdk-lib: 2.35.0_constructs@10.1.68
       constructs: 10.1.68
+      decamelize: 5.0.1
+      yaml: 1.10.2
     dev: false
     bundledDependencies:
       - decamelize
@@ -3052,6 +3062,11 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
+
+  /decamelize/5.0.1:
+    resolution: {integrity: sha512-VfxadyCECXgQlkoEAjeghAr5gY3Hf+IKjKb+X8tGVDtveCjN+USwprd2q3QXBR9T1+x2DG0XZF5/w+7HAtSaXA==}
+    engines: {node: '>=10'}
+    dev: false
 
   /deep-is/0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
@@ -3739,6 +3754,10 @@ packages:
       graceful-fs: 4.2.10
       jsonfile: 6.1.0
       universalify: 2.0.0
+    dev: false
+
+  /fs-readdir-recursive/1.1.0:
+    resolution: {integrity: sha512-GNanXlVr2pf02+sPN40XN8HG+ePaNcvM0q5mZBd668Obwb0yD5GiUbZOFgwn8kGMY6I3mdyDJzieUy3PTYyTRA==}
     dev: false
 
   /fs.realpath/1.0.0:

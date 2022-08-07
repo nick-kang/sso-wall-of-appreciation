@@ -4,7 +4,11 @@ import esbuild from 'esbuild'
 
 /** @type {import('esbuild').BuildOptions} */
 const config = {
-  entryPoints: ['src/index.ts', 'src/MyGitHubActionRole.ts'],
+  entryPoints: [
+    'src/index.ts',
+    'src/MyGitHubActionRole.ts',
+    'src/renameHtmlFiles.ts',
+  ],
   external: ['aws-cdk-lib'],
   format: 'cjs',
   minify: false,

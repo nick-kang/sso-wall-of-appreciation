@@ -24,12 +24,14 @@
     "cdk-iam-floyd": "^0.410.0",
     "cdk-pipelines-github": "^0.2.150",
     "constructs": "^10.1.68",
+    "fs-readdir-recursive": "^1.1.0",
     "zod": "^3.17.10"
   },
   "devDependencies": {
     "@app/config-esbuild": "workspace:*",
     "@app/config-ts": "workspace:*",
     "@app/eslint-config": "workspace:*",
+    "@types/fs-readdir-recursive": "^1.1.0",
     "esbuild": "^0.14.53",
     "npm-run-all": "^4.1.5",
     "typescript": "4.7.4"
