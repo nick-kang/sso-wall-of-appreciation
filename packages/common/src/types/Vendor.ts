@@ -8,6 +8,7 @@ export const Vendor = z.object({
   planPrice: z.number().min(0).or(z.string()),
   homepageUrl: z.string().url().min(1).max(256),
   categories: z.array(z.string().min(1).max(32)),
+  alternativeTo: z.array(z.string().min(1).max(32)),
   updatedAt: z.string(),
 })
 

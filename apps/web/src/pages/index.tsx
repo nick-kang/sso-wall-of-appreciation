@@ -14,9 +14,14 @@ import { VendorsTable } from '../components/VendorsTable'
 interface Props {
   vendors: Vendors
   categories: string[]
+  alternativeTo: string[]
 }
 
-export default function Root({ vendors, categories }: Props): JSX.Element {
+export default function Root({
+  vendors,
+  categories,
+  alternativeTo,
+}: Props): JSX.Element {
   return (
     <Box mt={{ base: '5', sm: '10', md: '16' }}>
       <Container as="section" mb={{ base: '50px', md: '75px' }}>
@@ -81,7 +86,10 @@ export default function Root({ vendors, categories }: Props): JSX.Element {
           Contributors Welcome!
         </Text>
         <Container maxW="container.sm" mx="auto">
-          <AnonymousRequestForm categories={categories} />
+          <AnonymousRequestForm
+            categories={categories}
+            alternativeTo={alternativeTo}
+          />
         </Container>
       </Box>
       <Container
@@ -109,6 +117,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 
   const vendors: Vendors = []
   const categories = new Set<string>()
+  const alternativeTo = new Set<string>()
   for (const filename of filenames) {
     const rawYaml = fs.readFileSync(path.join(BASE_PATH, filename), {
       encoding: 'utf8',
@@ -128,6 +137,9 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 
     vendors.push(vendorEither.data)
     vendorEither.data.categories.forEach((category) => categories.add(category))
+    vendorEither.data.alternativeTo.forEach((alternative) =>
+      alternativeTo.add(alternative),
+    )
   }
 
   return {
@@ -137,6 +149,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
           new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
       ),
       categories: Array.from(categories).sort(),
+      alternativeTo: Array.from(alternativeTo).sort(),
     },
   }
 }

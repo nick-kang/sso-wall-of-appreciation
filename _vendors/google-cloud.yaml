@@ -1,6 +1,7 @@
 name: Google Cloud
 categories:
   - cloud
+alternative_to: []
 homepage_url: https://cloud.google.com/
 plan_price: usage
 plan_source_url: https://cloud.google.com/pricing

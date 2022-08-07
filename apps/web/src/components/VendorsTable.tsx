@@ -64,6 +64,7 @@ interface Row {
   }
   updatedAt: string
   categories: string[]
+  alternativeTo: string[]
 }
 
 const columnHelper = createColumnHelper<Row>()
@@ -166,7 +167,7 @@ export function VendorsTable({ vendors }: Props): JSX.Element {
         }) => {
           return (
             <Flex gap="2">
-              <Text>{company.name}</Text>
+              <Text fontWeight="semibold">{company.name}</Text>
               <Link
                 href={company.url}
                 target="_blank"
@@ -224,21 +225,46 @@ export function VendorsTable({ vendors }: Props): JSX.Element {
       }),
       columnHelper.accessor((r) => r.categories.join(' '), {
         id: 'categories',
-        header: 'Categories',
+        header: (): JSX.Element => <Text align="center">Categories</Text>,
         enableSorting: false,
         cell: ({
           row: {
             original: { categories },
           },
         }) => (
-          <HStack>
+          <HStack justify="center">
             {categories.map(
               (category): JSX.Element => (
-                <Tag key={category}>{category}</Tag>
+                <Tag variant="outline" key={category}>
+                  {category}
+                </Tag>
               ),
             )}
           </HStack>
         ),
+      }),
+      columnHelper.accessor((r) => r.alternativeTo.join(' '), {
+        id: 'alternativeTo',
+        header: (): JSX.Element => <Text align="center">Alternative to</Text>,
+        enableSorting: false,
+        cell: ({
+          row: {
+            original: { alternativeTo },
+          },
+        }) =>
+          alternativeTo.length > 0 ? (
+            <HStack justify="center">
+              {alternativeTo.map(
+                (alternative): JSX.Element => (
+                  <Tag variant="outline" key={alternative}>
+                    {alternative}
+                  </Tag>
+                ),
+              )}
+            </HStack>
+          ) : (
+            <Text align="center">--</Text>
+          ),
       }),
     ],
     [],
@@ -264,6 +290,7 @@ export function VendorsTable({ vendors }: Props): JSX.Element {
           },
           updatedAt: dayjs(node.updatedAt).format('ll'),
           categories: node.categories,
+          alternativeTo: node.alternativeTo,
         }),
       ) ?? [],
     [vendors],
@@ -296,8 +323,9 @@ export function VendorsTable({ vendors }: Props): JSX.Element {
         <Stack
           direction={{ base: 'column', md: 'row' }}
           justify="space-between"
+          alignItems="center"
         >
-          <Text fontSize="lg" fontWeight="medium">
+          <Text fontSize="sm" fontWeight="medium">
             Wall of Appreciation
           </Text>
           <InputGroup maxW="xs">

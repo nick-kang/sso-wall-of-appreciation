@@ -1,5 +1,10 @@
 import { CreateVendor } from '@app/common'
-import { Input, InputGroup, InputLeftAddon, Stack } from '@chakra-ui/react'
+import {
+  Input,
+  InputGroup,
+  InputLeftAddon,
+  useDisclosure,
+} from '@chakra-ui/react'
 import { CreatableSelect } from 'chakra-react-select'
 import { Control, Controller, UseFormRegister } from 'react-hook-form'
 
@@ -9,13 +14,26 @@ interface Props {
   register: UseFormRegister<CreateVendor>
   control: Control<CreateVendor>
   categories: string[]
+  alternativeTo: string[]
 }
 
 export function VendorFormFields({
   control,
   register,
   categories,
+  alternativeTo,
 }: Props): JSX.Element {
+  const {
+    isOpen: isCategoriesOpen,
+    onOpen: onCategoriesOpen,
+    onClose: onCategoriesClose,
+  } = useDisclosure()
+  const {
+    isOpen: isAlternativeToOpen,
+    onOpen: onAlternativeToOpen,
+    onClose: onAlternativeToClose,
+  } = useDisclosure()
+
   return (
     <>
       <FormItem control={control} name="name" label="Vendor Name">
@@ -63,31 +81,51 @@ export function VendorFormFields({
         <Input {...register('homepageUrl')} type="url" />
       </FormItem>
       <FormItem control={control} name="categories" label="Categories">
-        <Stack spacing="2">
-          <Controller
-            control={control}
-            name="categories"
-            defaultValue={[]}
-            render={({ field: { onChange, value, ref } }): JSX.Element => (
-              <CreatableSelect
-                ref={ref as any}
-                value={value.map((c) => ({ label: c, value: c }))}
-                onChange={(values): void =>
-                  onChange(values.map((v) => v.value))
-                }
-                options={categories.map((c) => ({ label: c, value: c }))}
-                isMulti
-                onCreateOption={(newCategory): void =>
-                  onChange([...value, newCategory].sort())
-                }
-              />
-            )}
-          />
-        </Stack>
+        <Controller
+          control={control}
+          name="categories"
+          defaultValue={[]}
+          render={({ field: { onChange, value, ref } }): JSX.Element => (
+            <CreatableSelect
+              ref={ref as any}
+              value={value.map((c) => ({ label: c, value: c }))}
+              onChange={(values): void => onChange(values.map((v) => v.value))}
+              options={categories.map((c) => ({ label: c, value: c }))}
+              isMulti
+              onMenuOpen={onCategoriesOpen}
+              onMenuClose={onCategoriesClose}
+              menuIsOpen={isCategoriesOpen}
+              placeholder={isCategoriesOpen ? 'Type to create...' : 'Select'}
+              onCreateOption={(newCategory): void =>
+                onChange([...value, newCategory].sort())
+              }
+            />
+          )}
+        />
       </FormItem>
-      {/* <FormItem control={control} name="email" label="Email (optional)">
-        <Input {...register('email')} />
-      </FormItem> */}
+      <FormItem control={control} name="alternativeTo" label="Alternative to">
+        <Controller
+          control={control}
+          name="alternativeTo"
+          defaultValue={[]}
+          render={({ field: { onChange, value, ref } }): JSX.Element => (
+            <CreatableSelect
+              ref={ref as any}
+              value={value.map((c) => ({ label: c, value: c }))}
+              onChange={(values): void => onChange(values.map((v) => v.value))}
+              options={alternativeTo.map((c) => ({ label: c, value: c }))}
+              isMulti
+              onMenuOpen={onAlternativeToOpen}
+              onMenuClose={onAlternativeToClose}
+              menuIsOpen={isAlternativeToOpen}
+              placeholder={isAlternativeToOpen ? 'Type to create...' : 'Select'}
+              onCreateOption={(newAlternativeTo): void =>
+                onChange([...value, newAlternativeTo].sort())
+              }
+            />
+          )}
+        />
+      </FormItem>
     </>
   )
 }

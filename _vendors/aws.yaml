@@ -1,6 +1,7 @@
 name: AWS
 categories:
   - cloud
+alternative_to: []
 homepage_url: https://aws.amazon.com/
 plan_price: usage
 plan_source_url: https://aws.amazon.com/pricing

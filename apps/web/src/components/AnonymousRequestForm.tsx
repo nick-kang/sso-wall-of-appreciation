@@ -21,9 +21,13 @@ import { VendorFormFields } from './VendorFormFields'
 
 interface Props {
   categories: string[]
+  alternativeTo: string[]
 }
 
-export function AnonymousRequestForm({ categories }: Props): JSX.Element {
+export function AnonymousRequestForm({
+  categories,
+  alternativeTo,
+}: Props): JSX.Element {
   const {
     control,
     handleSubmit,
@@ -69,6 +73,7 @@ export function AnonymousRequestForm({ categories }: Props): JSX.Element {
       <Stack spacing="4">
         <VendorFormFields
           categories={categories}
+          alternativeTo={alternativeTo}
           control={control}
           register={register}
         />
