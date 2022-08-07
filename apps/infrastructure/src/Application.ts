@@ -68,7 +68,6 @@ export class Application extends cdk.Stack {
 
     /*********** CDN ***********/
 
-    const distributionPaths = ['/']
     const htmlFiles = new s3.Bucket(this, 'HtmlFilesBucket', {
       enforceSSL: true,
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
@@ -79,7 +78,6 @@ export class Application extends cdk.Stack {
       cacheControl: [
         s3deploy.CacheControl.fromString('public, max-age=0, must-revalidate'),
       ],
-      distributionPaths,
     })
 
     const staticFiles = new s3.Bucket(this, 'StaticFilesBucket', {
@@ -92,7 +90,6 @@ export class Application extends cdk.Stack {
       cacheControl: [
         s3deploy.CacheControl.fromString('public, max-age=31536000, immutable'),
       ],
-      distributionPaths,
     })
 
     // https://github.com/awslabs/aws-solutions-constructs/blob/d0474e6841376db224fc82ce55eb090d1634b4d9/source/patterns/%40aws-solutions-constructs/core/lib/cloudfront-distribution-defaults.ts#L22-L41
@@ -110,7 +107,7 @@ export class Application extends cdk.Stack {
         origin: new origins.S3Origin(htmlFiles),
         allowedMethods: cf.AllowedMethods.ALLOW_GET_HEAD_OPTIONS,
         viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-        cachePolicy: cf.CachePolicy.CACHING_OPTIMIZED,
+        cachePolicy: cf.CachePolicy.CACHING_DISABLED,
         responseHeadersPolicy: cf.ResponseHeadersPolicy.SECURITY_HEADERS,
         originRequestPolicy: cf.OriginRequestPolicy.CORS_S3_ORIGIN,
       },
