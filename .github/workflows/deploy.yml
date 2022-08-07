@@ -232,6 +232,34 @@ jobs:
       - id: Publish
         name: Publish Assets-FileAsset7
         run: /bin/bash ./cdk.out/publish-Assets-FileAsset7-step.sh
+  Assets-FileAsset8:
+    name: Publish Assets Assets-FileAsset8
+    needs:
+      - Build-Synth
+    permissions:
+      contents: read
+      id-token: write
+    runs-on: ubuntu-latest
+    outputs:
+      asset-hash: ${{ steps.Publish.outputs.asset-hash }}
+    steps:
+      - name: Download cdk.out
+        uses: actions/download-artifact@v2
+        with:
+          name: cdk.out
+          path: cdk.out
+      - name: Install
+        run: npm install --no-save cdk-assets
+      - name: Authenticate Via OIDC Role
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: us-west-2
+          role-duration-seconds: 1800
+          role-skip-session-tagging: true
+          role-to-assume: arn:aws:iam::337757081551:role/GitHubActionRole
+      - id: Publish
+        name: Publish Assets-FileAsset8
+        run: /bin/bash ./cdk.out/publish-Assets-FileAsset8-step.sh
   Prod-Application-Deploy:
     name: Deploy PipelineProdApplicationF7A96BA1
     permissions:
@@ -246,6 +274,7 @@ jobs:
       - Assets-FileAsset5
       - Assets-FileAsset6
       - Assets-FileAsset7
+      - Assets-FileAsset8
     runs-on: ubuntu-latest
     steps:
       - name: Authenticate Via OIDC Role
