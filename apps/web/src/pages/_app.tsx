@@ -20,6 +20,11 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     () => hostname + (router.asPath === '/' ? '' : router.asPath).split('?')[0],
     [router.asPath],
   )
+  const rum = useAnalytics()
+
+  useEffect(() => {
+    rum?.recordPageView(canonicalUrl)
+  }, [rum, canonicalUrl])
 
   return (
     <>
