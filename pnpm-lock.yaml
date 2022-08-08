@@ -74,6 +74,7 @@ importers:
       '@tanstack/match-sorter-utils': ^8.1.1
       '@tanstack/react-table': ^8.5.11
       '@types/react': 18.0.15
+      aws-rum-web: ^1.8.1
       camelcase-keys: ^8.0.1
       chakra-react-select: ^4.1.4
       dayjs: ^1.11.4
@@ -88,6 +89,7 @@ importers:
       npm-run-all: ^4.1.5
       react: 18.2.0
       react-dom: 18.2.0
+      react-error-boundary: ^3.1.4
       react-hook-form: ^7.34.0
       react-icons: ^4.4.0
       typescript: 4.7.4
@@ -105,6 +107,7 @@ importers:
       '@hookform/resolvers': 2.9.7_react-hook-form@7.34.0
       '@tanstack/match-sorter-utils': 8.1.1
       '@tanstack/react-table': 8.5.11_biqbaboplfbrettd7655fr4n2y
+      aws-rum-web: 1.8.1
       camelcase-keys: 8.0.1
       chakra-react-select: 4.1.4_axdzemq34ph7o2ithxjylqpx3m
       dayjs: 1.11.4
@@ -116,6 +119,7 @@ importers:
       next-sitemap: 3.1.16_5zhu3cku25zwtyi2lv2v345ony
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      react-error-boundary: 3.1.4_react@18.2.0
       react-hook-form: 7.34.0_react@18.2.0
       react-icons: 4.4.0_react@18.2.0
       yaml: 2.1.1
@@ -257,6 +261,14 @@ packages:
       tslib: 1.14.1
     dev: false
 
+  /@aws-crypto/sha256-js/1.2.2:
+    resolution: {integrity: sha512-Nr1QJIbW/afYYGzYvrF70LtaHrIRtd4TNAglX8BvlfxJLZ45SAmueIKYl5tWoNBPzp65ymXGFK0Bb1vZUpuc9g==}
+    dependencies:
+      '@aws-crypto/util': 1.2.2
+      '@aws-sdk/types': 3.127.0
+      tslib: 1.14.1
+    dev: false
+
   /@aws-crypto/sha256-js/2.0.0:
     resolution: {integrity: sha512-VZY+mCY4Nmrs5WGfitmNqXzaE873fcIZDu54cbaDaaamsaTOP1DBImV9F4pICc3EHjQXujyE8jig+PFCaew9ig==}
     dependencies:
@@ -268,6 +280,14 @@ packages:
   /@aws-crypto/supports-web-crypto/2.0.0:
     resolution: {integrity: sha512-Ge7WQ3E0OC7FHYprsZV3h0QIcpdyJLvIeg+uTuHqRYm8D6qCFJoiC+edSzSyFiHtZf+NOQDJ1q46qxjtzIY2nA==}
     dependencies:
+      tslib: 1.14.1
+    dev: false
+
+  /@aws-crypto/util/1.2.2:
+    resolution: {integrity: sha512-H8PjG5WJ4wz0UXAFXeJjWCW1vkvIJ3qUUD+rGRwJ2/hj+xT58Qle2MTql/2MGzkU+1JLAFuR6aJpLAjHwhmwwg==}
+    dependencies:
+      '@aws-sdk/types': 3.127.0
+      '@aws-sdk/util-utf8-browser': 3.109.0
       tslib: 1.14.1
     dev: false
 
@@ -285,6 +305,48 @@ packages:
     dependencies:
       '@aws-sdk/types': 3.127.0
       tslib: 2.4.0
+    dev: false
+
+  /@aws-sdk/client-rum/3.142.0:
+    resolution: {integrity: sha512-0fPljGa9MLiRC8NDpjWNQWVLsfxXCKIUF+r4S7IwsuY1vlKFeQ1a/0Lcq8aJPv54vSP9XpOmgT4C+KGOcRScwQ==}
+    engines: {node: '>=12.0.0'}
+    dependencies:
+      '@aws-crypto/sha256-browser': 2.0.0
+      '@aws-crypto/sha256-js': 2.0.0
+      '@aws-sdk/client-sts': 3.142.0
+      '@aws-sdk/config-resolver': 3.130.0
+      '@aws-sdk/credential-provider-node': 3.142.0
+      '@aws-sdk/fetch-http-handler': 3.131.0
+      '@aws-sdk/hash-node': 3.127.0
+      '@aws-sdk/invalid-dependency': 3.127.0
+      '@aws-sdk/middleware-content-length': 3.127.0
+      '@aws-sdk/middleware-host-header': 3.127.0
+      '@aws-sdk/middleware-logger': 3.127.0
+      '@aws-sdk/middleware-recursion-detection': 3.127.0
+      '@aws-sdk/middleware-retry': 3.127.0
+      '@aws-sdk/middleware-serde': 3.127.0
+      '@aws-sdk/middleware-signing': 3.130.0
+      '@aws-sdk/middleware-stack': 3.127.0
+      '@aws-sdk/middleware-user-agent': 3.127.0
+      '@aws-sdk/node-config-provider': 3.127.0
+      '@aws-sdk/node-http-handler': 3.127.0
+      '@aws-sdk/protocol-http': 3.127.0
+      '@aws-sdk/smithy-client': 3.142.0
+      '@aws-sdk/types': 3.127.0
+      '@aws-sdk/url-parser': 3.127.0
+      '@aws-sdk/util-base64-browser': 3.109.0
+      '@aws-sdk/util-base64-node': 3.55.0
+      '@aws-sdk/util-body-length-browser': 3.55.0
+      '@aws-sdk/util-body-length-node': 3.55.0
+      '@aws-sdk/util-defaults-mode-browser': 3.142.0
+      '@aws-sdk/util-defaults-mode-node': 3.142.0
+      '@aws-sdk/util-user-agent-browser': 3.127.0
+      '@aws-sdk/util-user-agent-node': 3.127.0
+      '@aws-sdk/util-utf8-browser': 3.109.0
+      '@aws-sdk/util-utf8-node': 3.109.0
+      tslib: 2.4.0
+    transitivePeerDependencies:
+      - aws-crt
     dev: false
 
   /@aws-sdk/client-ssm/3.142.0:
@@ -2796,6 +2858,24 @@ packages:
       fsevents: 2.3.2
     dev: false
 
+  /aws-rum-web/1.8.1:
+    resolution: {integrity: sha512-TecFgrl7oIr9WGcJYmWoEIUUCM6NLT0O1IJpqE+ubJtlNj2pIlXbE2DKTXgGNkOLB30NkipeNRzOGvhftMp68g==}
+    dependencies:
+      '@aws-crypto/sha256-js': 1.2.2
+      '@aws-sdk/client-rum': 3.142.0
+      '@aws-sdk/fetch-http-handler': 3.131.0
+      '@aws-sdk/protocol-http': 3.127.0
+      '@aws-sdk/signature-v4': 3.130.0
+      '@aws-sdk/util-hex-encoding': 3.109.0
+      '@babel/runtime': 7.18.9
+      shimmer: 1.2.1
+      ua-parser-js: 0.7.31
+      uuid: 8.3.2
+      web-vitals: 1.1.2
+    transitivePeerDependencies:
+      - aws-crt
+    dev: false
+
   /axe-core/4.4.3:
     resolution: {integrity: sha512-32+ub6kkdhhWick/UjvEwRchgoetXqTK14INLqbGm5U2TzBkBNF3nQtLYm8ovxSkQWArjEQvftCKryjZaATu3w==}
     engines: {node: '>=4'}
@@ -4637,6 +4717,16 @@ packages:
       react: 18.2.0
       scheduler: 0.23.0
 
+  /react-error-boundary/3.1.4_react@18.2.0:
+    resolution: {integrity: sha512-uM9uPzZJTF6wRQORmSrvOIgt4lJ9MC1sNgEOj2XGsDTRE4kmpWxg7ENK9EWNKJRMAOY9z0MuF4yIfl6gp4sotA==}
+    engines: {node: '>=10', npm: '>=6'}
+    peerDependencies:
+      react: '>=16.13.1'
+    dependencies:
+      '@babel/runtime': 7.18.9
+      react: 18.2.0
+    dev: false
+
   /react-fast-compare/3.2.0:
     resolution: {integrity: sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==}
     dev: false
@@ -4900,6 +4990,10 @@ packages:
   /shell-quote/1.7.3:
     resolution: {integrity: sha512-Vpfqwm4EnqGdlsBFNmHhxhElJYrdfcxPThu+ryKS5J8L/fhAwLazFZtq+S+TWZ9ANj2piSQLGj6NQg+lKPmxrw==}
     dev: true
+
+  /shimmer/1.2.1:
+    resolution: {integrity: sha512-sQTKC1Re/rM6XyFM6fIAGHRPVGvyXfgzIDvzoq608vM+jeyVD0Tu1E6Np0Kc2zAIFWIj963V2800iF/9LPieQw==}
+    dev: false
 
   /side-channel/1.0.4:
     resolution: {integrity: sha512-q5XPytqFEIKHkGdiMIrY10mvLRvnQh42/+GoBlFW3b2LXLE2xxJpZFdm94we0BaoV3RwJyGqg5wS7epxTv0Zvw==}
@@ -5286,6 +5380,10 @@ packages:
     hasBin: true
     dev: true
 
+  /ua-parser-js/0.7.31:
+    resolution: {integrity: sha512-qLK/Xe9E2uzmYI3qLeOmI0tEOt+TBBQyUIAh4aAgU05FVYzeZrKUdkAZfBNVGRaHVgV0TDkdEngJSw/SyQchkQ==}
+    dev: false
+
   /unbox-primitive/1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}
     dependencies:
@@ -5384,6 +5482,10 @@ packages:
       spdx-correct: 3.1.1
       spdx-expression-parse: 3.0.1
     dev: true
+
+  /web-vitals/1.1.2:
+    resolution: {integrity: sha512-PFMKIY+bRSXlMxVAQ+m2aw9c/ioUYfDgrYot0YUa+/xa0sakubWhSDyxAKwzymvXVdF4CZI71g06W+mqhzu6ig==}
+    dev: false
 
   /webidl-conversions/3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
