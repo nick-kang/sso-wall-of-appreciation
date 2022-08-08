@@ -7,10 +7,12 @@ import { ChakraProvider } from '@chakra-ui/react'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import { DefaultSeo } from 'next-seo'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 
 import theme from '../styles/theme'
 import { hostname } from '@app/common'
+import { useAnalytics } from '../hooks/useAnalytics'
+import { ErrorBoundary } from '../components/ErrorBoundary'
 
 dayjs.extend(localizedFormat)
 
@@ -27,7 +29,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   }, [rum, canonicalUrl])
 
   return (
-    <>
+    <ErrorBoundary>
       <DefaultSeo
         canonical={canonicalUrl}
         defaultTitle="SSO Wall of Appreciation"
@@ -36,7 +38,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
       <ChakraProvider theme={theme}>
         <Component {...pageProps} />
       </ChakraProvider>
-    </>
+    </ErrorBoundary>
   )
 }
 

@@ -7,6 +7,7 @@ import path from 'node:path'
 import YAML from 'yaml'
 
 import { AnonymousRequestForm } from '../components/AnonymousRequestForm'
+import { ErrorBoundary } from '../components/ErrorBoundary'
 import { Footer } from '../components/Footer'
 import { Newsletter } from '../components/Newsletter'
 import { VendorsTable } from '../components/VendorsTable'
@@ -60,7 +61,9 @@ export default function Root({
         </Text>
       </Container>
       <Container as="section" mb={{ base: '50px', md: '75px' }}>
-        <VendorsTable vendors={vendors} />
+        <ErrorBoundary>
+          <VendorsTable vendors={vendors} />
+        </ErrorBoundary>
       </Container>
       <Box
         as="section"
@@ -86,10 +89,12 @@ export default function Root({
           Contributors Welcome!
         </Text>
         <Container maxW="container.sm" mx="auto">
-          <AnonymousRequestForm
-            categories={categories}
-            alternativeTo={alternativeTo}
-          />
+          <ErrorBoundary>
+            <AnonymousRequestForm
+              categories={categories}
+              alternativeTo={alternativeTo}
+            />
+          </ErrorBoundary>
         </Container>
       </Box>
       <Container
@@ -98,7 +103,9 @@ export default function Root({
         maxW="container.md"
         mx="auto"
       >
-        <Newsletter />
+        <ErrorBoundary>
+          <Newsletter />
+        </ErrorBoundary>
       </Container>
       <Container
         as="section"
