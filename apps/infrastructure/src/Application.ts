@@ -5,10 +5,13 @@ import * as cdk from 'aws-cdk-lib'
 import * as certificatemanager from 'aws-cdk-lib/aws-certificatemanager'
 import * as cf from 'aws-cdk-lib/aws-cloudfront'
 import * as origins from 'aws-cdk-lib/aws-cloudfront-origins'
+import * as cognito from 'aws-cdk-lib/aws-cognito'
+import * as iam from 'aws-cdk-lib/aws-iam'
 import * as lambda from 'aws-cdk-lib/aws-lambda'
 import * as nodejs from 'aws-cdk-lib/aws-lambda-nodejs'
 import * as route53 from 'aws-cdk-lib/aws-route53'
 import * as targets from 'aws-cdk-lib/aws-route53-targets'
+import * as rum from 'aws-cdk-lib/aws-rum'
 import * as s3 from 'aws-cdk-lib/aws-s3'
 import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment'
 import * as statements from 'cdk-iam-floyd'
@@ -162,6 +165,64 @@ export class Application extends cdk.Stack {
       target: route53.RecordTarget.fromAlias(
         new targets.CloudFrontTarget(distribution),
       ),
+    })
+
+    /********** Analytics **********/
+
+    const identityPool = new cognito.CfnIdentityPool(this, 'IdentityPool', {
+      allowUnauthenticatedIdentities: true,
+    })
+
+    const identityPoolRole = new iam.Role(this, 'IdentityPoolRole', {
+      assumedBy: new iam.FederatedPrincipal(
+        'cognito-identity.amazonaws.com',
+        {
+          StringEquals: {
+            'cognito-identity.amazonaws.com:aud': identityPool.ref,
+          },
+        },
+        'sts:AssumeRoleWithWebIdentity',
+      ),
+      inlinePolicies: {
+        RUMPutBatchMetrics: new iam.PolicyDocument({
+          statements: [
+            new iam.PolicyStatement({
+              sid: 'AllowRUMActions',
+              effect: iam.Effect.ALLOW,
+              actions: ['rum:PutRumEvents'],
+              resources: [
+                `arn:aws:rum:${CONSTANTS.region}:${CONSTANTS.account}:appmonitor/${hostname}`,
+              ],
+            }),
+          ],
+        }),
+      },
+    })
+
+    new cognito.CfnIdentityPoolRoleAttachment(
+      this,
+      'IdentityPoolRoleAttachment',
+      {
+        identityPoolId: identityPool.ref,
+        roles: {
+          authenticated: identityPoolRole.roleArn,
+          unauthenticated: identityPoolRole.roleArn,
+        },
+      },
+    )
+
+    new rum.CfnAppMonitor(this, 'AppMonitor', {
+      appMonitorConfiguration: {
+        allowCookies: true,
+        enableXRay: true,
+        identityPoolId: identityPool.ref,
+        telemetries: ['errors', 'performance', 'http'],
+        guestRoleArn: identityPoolRole.roleArn,
+        sessionSampleRate: 1,
+      },
+      cwLogEnabled: true,
+      domain: hostname,
+      name: hostname,
     })
   }
 }
