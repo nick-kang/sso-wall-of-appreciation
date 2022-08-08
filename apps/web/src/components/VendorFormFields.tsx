@@ -43,7 +43,7 @@ export function VendorFormFields({
         control={control}
         name="ssoPrice"
         label="SSO Price"
-        help="$0 if free"
+        help="Should be less than 15% of plan price"
       >
         <InputGroup>
           <InputLeftAddon>$</InputLeftAddon>
@@ -55,12 +55,7 @@ export function VendorFormFields({
           />
         </InputGroup>
       </FormItem>
-      <FormItem
-        control={control}
-        name="planPrice"
-        label="Plan Price"
-        help="$0 if free"
-      >
+      <FormItem control={control} name="planPrice" label="Plan Price">
         <InputGroup>
           <InputLeftAddon>$</InputLeftAddon>
           <Input
