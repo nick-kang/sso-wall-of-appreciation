@@ -150,7 +150,7 @@ export class Application extends cdk.Stack {
             cf.OriginRequestPolicy.USER_AGENT_REFERER_HEADERS,
         },
       },
-      defaultRootObject: 'index.html',
+      defaultRootObject: 'index',
       priceClass: cf.PriceClass.PRICE_CLASS_100,
       domainNames: [hostname],
       certificate: certificateUSEast1,
