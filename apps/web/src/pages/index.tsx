@@ -24,7 +24,7 @@ export default function Root({
 }: Props): JSX.Element {
   return (
     <Box mt={{ base: '5', sm: '10', md: '16' }}>
-      <Container as="section" mb={{ base: '50px', md: '75px' }}>
+      <Container as="section" mb={{ base: '7', md: '16' }}>
         <Text
           bgGradient="linear(to-l, teal.400, blue.600)"
           bgClip="text"

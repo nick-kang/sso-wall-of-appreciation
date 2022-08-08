@@ -9,6 +9,7 @@ import {
   InputGroup,
   InputLeftElement,
   Link,
+  Show,
   Stack,
   Table,
   TableContainer,
@@ -319,15 +320,17 @@ export function VendorsTable({ vendors }: Props): JSX.Element {
 
   return (
     <Stack>
-      <Box px={{ base: '4', md: '6' }} pt="5">
+      <Box pt={{ base: 0, md: '5' }}>
         <Stack
-          direction={{ base: 'column', md: 'row' }}
+          direction={{ base: 'column', sm: 'row' }}
           justify="space-between"
           alignItems="center"
         >
-          <Text fontSize="sm" fontWeight="medium">
-            Wall of Appreciation
-          </Text>
+          <Show above="sm">
+            <Text fontSize="sm" fontWeight="medium">
+              Wall of Appreciation
+            </Text>
+          </Show>
           <InputGroup maxW="xs">
             <InputLeftElement pointerEvents="none">
               <Icon as={FiSearch} color="muted" boxSize="5" />
