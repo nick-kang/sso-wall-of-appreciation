@@ -78,36 +78,23 @@ export class Application extends cdk.Stack {
 
     /*********** CDN ***********/
 
-    const htmlFiles = new s3.Bucket(this, 'HtmlFilesBucket', {
+    const bucket = new s3.Bucket(this, 'StaticFilesBucket', {
       enforceSSL: true,
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
     })
-    new s3deploy.BucketDeployment(this, 'HtmlFilesDeployment', {
-      sources: [s3deploy.Source.asset('../web/html')],
-      destinationBucket: htmlFiles,
-      contentType: 'text/html',
-      cacheControl: [
-        s3deploy.CacheControl.fromString('public, max-age=0, must-revalidate'),
-      ],
-      prune: false,
-    })
 
-    new s3deploy.BucketDeployment(this, 'OtherNoCacheFilesDeployment', {
+    new s3deploy.BucketDeployment(this, 'NoCacheFilesDeployment', {
       sources: [s3deploy.Source.asset('../web/out')],
-      destinationBucket: htmlFiles,
+      destinationBucket: bucket,
       cacheControl: [
         s3deploy.CacheControl.fromString('public, max-age=0, must-revalidate'),
       ],
       prune: false,
     })
 
-    const staticFiles = new s3.Bucket(this, 'StaticFilesBucket', {
-      enforceSSL: true,
-      blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
-    })
     new s3deploy.BucketDeployment(this, 'StaticFilesDeployment', {
       sources: [s3deploy.Source.asset('../web/_next')],
-      destinationBucket: staticFiles,
+      destinationBucket: bucket,
       cacheControl: [
         s3deploy.CacheControl.fromString('public, max-age=31536000, immutable'),
       ],
@@ -126,7 +113,7 @@ export class Application extends cdk.Stack {
 
     const distribution = new cf.Distribution(this, 'RootDistribution', {
       defaultBehavior: {
-        origin: new origins.S3Origin(htmlFiles),
+        origin: new origins.S3Origin(bucket),
         allowedMethods: cf.AllowedMethods.ALLOW_GET_HEAD_OPTIONS,
         viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
         cachePolicy: new cf.CachePolicy(this, 'DefaultCachePolicy', {
@@ -152,7 +139,7 @@ export class Application extends cdk.Stack {
       },
       additionalBehaviors: {
         '/_next/*': {
-          origin: new origins.S3Origin(staticFiles),
+          origin: new origins.S3Origin(bucket),
           allowedMethods: cf.AllowedMethods.ALLOW_GET_HEAD_OPTIONS,
           viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
           cachePolicy: cf.CachePolicy.CACHING_OPTIMIZED,
