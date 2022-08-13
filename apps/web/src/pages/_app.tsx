@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const router = useRouter()
   const canonicalUrl = useMemo(
     () =>
-      'http://' +
+      'https://' +
       hostname +
       (router.asPath === '/' ? '' : router.asPath).split('?')[0],
     [router.asPath],
