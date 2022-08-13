@@ -2,11 +2,6 @@ function handler(
   event: AWSCloudFrontFunction.Event,
 ): AWSCloudFrontFunction.Request {
   const request = event.request
-
-  if (request.method !== 'GET' && request.method !== 'OPTION') {
-    return request
-  }
-
   const uri = request.uri
 
   // Check if at root path
