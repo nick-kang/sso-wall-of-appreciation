@@ -1,0 +1,22 @@
+{
+  "name": "@app/fn-format-request",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc",
+    "typecheck:watch": "tsc -w",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "pnpm lint --fix",
+    "build": "run-s 'tsc' 'minify'",
+    "tsc": "tsc -p tsconfig.json",
+    "minify": "terser --compress --mangle --output build/index.js build/index.js"
+  },
+  "devDependencies": {
+    "@app/config-ts": "workspace:*",
+    "@app/eslint-config": "workspace:*",
+    "@types/aws-cloudfront-function": "^1.0.2",
+    "npm-run-all": "^4.1.5",
+    "terser": "^5.14.2",
+    "typescript": "4.7.4"
+  }
+}

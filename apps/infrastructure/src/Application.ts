@@ -129,9 +129,26 @@ export class Application extends cdk.Stack {
         origin: new origins.S3Origin(htmlFiles),
         allowedMethods: cf.AllowedMethods.ALLOW_GET_HEAD_OPTIONS,
         viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-        cachePolicy: cf.CachePolicy.CACHING_DISABLED,
+        cachePolicy: new cf.CachePolicy(this, 'DefaultCachePolicy', {
+          enableAcceptEncodingGzip: true,
+          enableAcceptEncodingBrotli: true,
+          minTtl: cdk.Duration.seconds(0),
+          maxTtl: cdk.Duration.seconds(0),
+          defaultTtl: cdk.Duration.seconds(0),
+          comment: 'Policy with caching disabled and compression enabled',
+        }),
         responseHeadersPolicy: cf.ResponseHeadersPolicy.SECURITY_HEADERS,
         originRequestPolicy: cf.OriginRequestPolicy.CORS_S3_ORIGIN,
+        functionAssociations: [
+          {
+            eventType: cf.FunctionEventType.VIEWER_REQUEST,
+            function: new cf.Function(this, 'FormatRequestFunction', {
+              code: cf.FunctionCode.fromFile({
+                filePath: '../functions/fn-format-request/build/index.js',
+              }),
+            }),
+          },
+        ],
       },
       additionalBehaviors: {
         '/_next/*': {

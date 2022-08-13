@@ -19,6 +19,7 @@
     "web": "pnpm --filter \"@app/web\"",
     "---------packages---------": "",
     "fn-request": "pnpm --filter \"@app/fn-request\"",
+    "fn-format-request": "pnpm --filter \"@app/fn-format-request\"",
     "config-eslint": "pnpm --filter \"@app/eslint-config\""
   },
   "devDependencies": {

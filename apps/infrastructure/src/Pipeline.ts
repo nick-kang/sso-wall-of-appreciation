@@ -24,7 +24,6 @@ export class Pipeline extends cdk.Stack {
         ],
         commands: [
           'pnpm run build',
-          'node --enable-source-maps apps/infrastructure/build/renameHtmlFiles.js',
           'mkdir apps/web/_next',
           'mv apps/web/out/_next apps/web/_next/_next',
           'pnpm run infrastructure synth',
