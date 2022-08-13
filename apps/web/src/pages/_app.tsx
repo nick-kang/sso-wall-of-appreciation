@@ -19,7 +19,10 @@ dayjs.extend(localizedFormat)
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const router = useRouter()
   const canonicalUrl = useMemo(
-    () => hostname + (router.asPath === '/' ? '' : router.asPath).split('?')[0],
+    () =>
+      'http://' +
+      hostname +
+      (router.asPath === '/' ? '' : router.asPath).split('?')[0],
     [router.asPath],
   )
   const rum = useAnalytics()
