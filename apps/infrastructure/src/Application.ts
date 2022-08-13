@@ -144,7 +144,7 @@ export class Application extends cdk.Stack {
             eventType: cf.FunctionEventType.VIEWER_REQUEST,
             function: new cf.Function(this, 'FormatRequestFunction', {
               code: cf.FunctionCode.fromFile({
-                filePath: '../functions/fn-format-request/build/index.js',
+                filePath: '../../functions/fn-format-request/build/index.js',
               }),
             }),
           },
